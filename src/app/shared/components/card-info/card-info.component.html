@@ -1,0 +1,15 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{ title }}</mat-card-title>
+    <mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image *ngIf="img" [src]="img">
+  <mat-card-content>
+    <ng-content select="[content]"></ng-content>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+    <ng-content select="[buttons]"></ng-content>
+  </mat-card-actions>
+</mat-card>

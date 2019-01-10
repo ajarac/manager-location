@@ -1,4 +1,4 @@
 <mat-form-field>
-  <textarea matInput rows="4" [ ]="placeholder" [formControl]="control"></textarea>
+  <textarea matInput rows="4" [placeholder]="placeholder" [formControl]="control"></textarea>
   <mat-error *ngIf="control.hasError('required')">You must enter a value</mat-error>
 </mat-form-field>

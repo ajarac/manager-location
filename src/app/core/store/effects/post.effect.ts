@@ -56,4 +56,10 @@ export class PostEffect {
 		ofType(postActions.CREATE_POST_SUCCESS, postActions.UPDATE_POST_SUCCESS, postActions.REMOVE_POST_SUCCESS),
 		tap(() => this.router.navigate([ '/posts' ]))
 	);
+
+	@Effect()
+	removePostSuccess$ = this.actions.pipe(
+		ofType(postActions.REMOVE_POST_SUCCESS),
+		map(() => new postActions.GetPosts())
+	);
 }

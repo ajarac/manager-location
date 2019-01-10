@@ -4,7 +4,7 @@
     <mat-icon>add</mat-icon>
   </button>
   <app-lists body [dataList]="posts$ | async">
-    <app-card-post fxFlex="1 1 auto" fxFlexAlign="start" *template="let post" [post]="post" (detail)="detailPost(post)"
+    <app-card-post *template="let post" [post]="post" (detail)="detailPost(post)"
       (update)="updatePost(post)" (delete)="deletePost(post)"></app-card-post>
   </app-lists>
 </app-container>

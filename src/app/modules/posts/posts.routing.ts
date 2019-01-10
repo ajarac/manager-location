@@ -14,8 +14,16 @@ const ROUTES: Routes = [
 				component: pages.ListComponent
 			},
 			{
+				path: 'create',
+				component: pages.CreateComponent
+			},
+			{
 				path: ':id',
 				component: pages.DetailComponent
+			},
+			{
+				path: ':id/edit',
+				component: pages.UpdateComponent
 			}
 		]
 	}

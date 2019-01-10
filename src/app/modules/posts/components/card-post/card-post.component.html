@@ -1,6 +1,15 @@
-<app-card-info [title]="post.title" [img]="post.image_url" subtitle="{{ post.created_at | dateFromNow }}">
-  <div content>{{ post.content }}</div>
-  <div buttons>
-    buttons...
-  </div>
-</app-card-info>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-subtitle>{{ post.created_at | dateFromNow }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image *ngIf="post.image_url" [src]="post.image_url">
+  <mat-card-content>
+    <p>{{ post.content }}</p>
+  </mat-card-content>
+  <mat-card-actions *ngIf="showActions">
+    <button mat-icon-button color="primary" *ngFor="let action of actions" (click)="clickAction(action)">
+      <mat-icon>{{ action }}</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

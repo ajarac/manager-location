@@ -1,3 +1,22 @@
-<p>
-  detail works!
-</p>
+<app-container *ngIf="(post$ | async) as post">
+  <button toolbar mat-mini-fab (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span toolbar class="space"></span>
+  <button toolbar mat-mini-fab (click)="editPost(post.id)">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button toolbar mat-mini-fab (click)="removePost(post.id)">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <mat-grid-list body [cols]="rowsGrid$ | async" rowHeight="1:1">
+    <mat-grid-tile>
+      <app-card-post [post]="post" [showActions]="false"></app-card-post>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <agm-map [latitude]="+post.lat" [longitude]="+post.long">
+        <agm-marker [latitude]="+post.lat" [longitude]="+post.long"></agm-marker>
+      </agm-map>
+    </mat-grid-tile>
+  </mat-grid-list>
+</app-container>

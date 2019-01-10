@@ -1,16 +1,45 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
+import * as fromStore from '@core/store';
+import { Post } from '@core/models';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'app-detail',
+	templateUrl: './detail.component.html',
+	styleUrls: [ './detail.component.scss' ],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent {
+	post$: Observable<Post>;
 
-  constructor() { }
+	rowsGrid$: Observable<number> = this.breakpointObserver
+		.observe(Breakpoints.Handset)
+		.pipe(map((result) => (result.matches ? 1 : 2)));
 
-  ngOnInit() {
-  }
+	constructor(
+		private store: Store<fromStore.State>,
+		private router: Router,
+		private actRoute: ActivatedRoute,
+		private breakpointObserver: BreakpointObserver
+	) {
+		this.store.dispatch(new fromStore.GetPostById(+this.actRoute.snapshot.paramMap.get('id')));
+		this.post$ = this.store.select(fromStore.getPostEntity);
+	}
 
+	goBack(): void {
+		this.router.navigate([ '/posts' ]);
+	}
+
+	editPost(id: number): void {
+		this.router.navigate([ '/posts', id ]);
+	}
+
+	removePost(id: number): void {
+		this.store.dispatch(new fromStore.RemovePost(id));
+	}
 }

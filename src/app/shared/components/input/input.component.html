@@ -1,0 +1,4 @@
+<mat-form-field>
+  <input matInput [placeholder]="placeholder" [formControl]="control">
+  <mat-error *ngIf="control.hasError('required')">You must enter a value</mat-error>
+</mat-form-field>

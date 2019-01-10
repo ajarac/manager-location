@@ -1,0 +1,21 @@
+<app-container>
+  <button toolbar mat-mini-fab (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span toolbar class="space"></span>
+  <button toolbar mat-mini-fab (click)="save()" [disabled]="formGroup?.invalid">
+    <mat-icon>save</mat-icon>
+  </button>
+  <form body *ngIf="formGroup" [formGroup]="formGroup">
+    <mat-card>
+      <mat-card-title>{{ title }}</mat-card-title>
+      <mat-card-content>
+        <app-input [control]="formGroup.get('title')" placeholder="Title"></app-input>
+        <app-input [control]="formGroup.get('image_url')" placeholder="Image Url"></app-input>
+        <app-input [control]="formGroup.get('lat')" placeholder="Title"></app-input>
+        <app-input [control]="formGroup.get('long')" placeholder="Title"></app-input>
+        <app-input-textarea [control]="formGroup.get('content')" placeholder="Content"></app-input-textarea>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</app-container>

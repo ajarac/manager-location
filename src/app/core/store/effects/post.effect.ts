@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { mergeMap, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { mergeMap, map, tap } from 'rxjs/operators';
 
 import { PostService } from '@core/services';
 import { Post } from '@core/models';
@@ -9,7 +10,7 @@ import * as postActions from '../actions/post.action';
 
 @Injectable()
 export class PostEffect {
-	constructor(private actions: Actions, private postService: PostService) {}
+	constructor(private actions: Actions, private postService: PostService, private router: Router) {}
 
 	@Effect()
 	getList$ = this.actions.pipe(
@@ -48,5 +49,11 @@ export class PostEffect {
 		map((action: postActions.RemovePost) => action.payload),
 		mergeMap((id: number) => this.postService.remove(id)),
 		map(() => new postActions.RemovePostSuccess())
+	);
+
+	@Effect({ dispatch: false })
+	goToListPosts$ = this.actions.pipe(
+		ofType(postActions.CREATE_POST_SUCCESS, postActions.UPDATE_POST_SUCCESS, postActions.REMOVE_POST_SUCCESS),
+		tap(() => this.router.navigate([ '/posts' ]))
 	);
 }

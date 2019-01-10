@@ -7,12 +7,25 @@ import {
 	MatSidenavModule,
 	MatIconModule,
 	MatListModule,
-	MatCardModule
+	MatCardModule,
+	MatSnackBarModule,
+	MatGridListModule,
+	MatInputModule
 } from '@angular/material';
 
 @NgModule({
 	declarations: [],
 	imports: [ CommonModule ],
-	exports: [ MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatCardModule ]
+	exports: [
+		MatToolbarModule,
+		MatButtonModule,
+		MatSidenavModule,
+		MatIconModule,
+		MatListModule,
+		MatCardModule,
+		MatSnackBarModule,
+		MatGridListModule,
+		MatInputModule
+	]
 })
 export class FeatureModule {}

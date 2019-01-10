@@ -1,1 +1,10 @@
-<app-card-post *ngFor=""></app-card-post>
+<app-container>
+  <span toolbar class="space"></span>
+  <button toolbar mat-mini-fab (click)="createPost()">
+    <mat-icon>add</mat-icon>
+  </button>
+  <app-lists body [dataList]="posts$ | async">
+    <app-card-post fxFlex="1 1 auto" fxFlexAlign="start" *template="let post" [post]="post" (detail)="detailPost(post)"
+      (update)="updatePost(post)" (delete)="deletePost(post)"></app-card-post>
+  </app-lists>
+</app-container>

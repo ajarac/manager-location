@@ -35,6 +35,6 @@ export class BaseService<T> implements BaseServiceImpl<T> {
 	}
 
 	remove(id: number): Observable<any> {
-		return this._apiService.del(this._resource);
+		return this._apiService.del(`${this._resource}/${id}`);
 	}
 }

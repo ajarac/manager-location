@@ -1,3 +1,5 @@
-import { CardInfoComponent } from './card-info/card-info.component';
+import { INPUTS } from './input/index';
+import { ListsComponent } from './lists/lists.component';
+import { ContainerComponent } from './container/container.component';
 
-export const COMPONENTS = [ CardInfoComponent ];
+export const COMPONENTS = [ ListsComponent, ContainerComponent, ...INPUTS ];

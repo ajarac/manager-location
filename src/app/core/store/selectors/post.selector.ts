@@ -11,4 +11,4 @@ export const getPostList = createSelector(getPostEntities, (colPosts: EntityColl
 	Object.keys(colPosts).map((id: string) => colPosts[id])
 );
 
-export const getEntity = createSelector(postState, fromPosts.getEntity);
+export const getPostEntity = createSelector(postState, fromPosts.getEntity);

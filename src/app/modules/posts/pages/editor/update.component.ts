@@ -1,5 +1,4 @@
-import { Component, Injector, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Injector, ChangeDetectionStrategy } from '@angular/core';
 import { BaseEditComponent } from './base-edit.component';
 import { Validators } from '@angular/forms';
 
@@ -14,10 +13,9 @@ import { Post } from '@core/models';
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UpdateComponent extends BaseEditComponent {
-	constructor(injector: Injector, private cdr: ChangeDetectorRef, private actRoute: ActivatedRoute) {
+	constructor(injector: Injector) {
 		super(injector);
 		this.title = 'Update Post';
-		this.store.dispatch(new fromStore.GetPostById(+this.actRoute.snapshot.paramMap.get('id')));
 		this.store
 			.select(fromStore.getPostEntity)
 			.pipe(filter((post: Post) => !!post), tap((post: Post) => this.initForm(post)))
@@ -34,8 +32,9 @@ export class UpdateComponent extends BaseEditComponent {
 			content: [ post.content, Validators.required ],
 			image_url: [ post.image_url ],
 			lat: [ post.lat ],
-			long: [ post.long ]
+			long: [ post.long ],
+			id: [ post.id ]
 		});
-		this.cdr.detectChanges();
+		// this.cdr.detectChanges();
 	}
 }

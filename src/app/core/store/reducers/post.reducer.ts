@@ -27,6 +27,13 @@ export function reducer(state: PostState = initialState, action: fromPost.PostAc
 			};
 		}
 
+		case fromPost.GET_POST_BY_ID: {
+			return {
+				...state,
+				post: null
+			};
+		}
+
 		case fromPost.GET_POST_BY_ID_SUCCESS: {
 			const post: Post = (<fromPost.GetPostByIdSuccess>action).payload;
 			return {

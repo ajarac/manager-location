@@ -14,6 +14,7 @@ import { INTERCEPTORS } from './interceptors/index';
 // Redux
 import { reducers } from './store';
 import { EFFECTS } from './store/effects';
+import { GUARDS } from './guards';
 
 @NgModule({
 	declarations: [],
@@ -23,6 +24,12 @@ import { EFFECTS } from './store/effects';
 		EffectsModule.forRoot(EFFECTS),
 		!env.production ? StoreDevtoolsModule.instrument() : []
 	],
-	providers: [ { provide: 'API_URL', useValue: env.api_url }, ...HTTP_SERVICES, ...SERVICES, ...INTERCEPTORS ]
+	providers: [
+		{ provide: 'API_URL', useValue: env.api_url },
+		...HTTP_SERVICES,
+		...SERVICES,
+		...INTERCEPTORS,
+		...GUARDS
+	]
 })
 export class CoreModule {}

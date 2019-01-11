@@ -24,10 +24,8 @@ export class DetailComponent {
 	constructor(
 		private store: Store<fromStore.State>,
 		private router: Router,
-		private actRoute: ActivatedRoute,
 		private breakpointObserver: BreakpointObserver
 	) {
-		this.store.dispatch(new fromStore.GetPostById(+this.actRoute.snapshot.paramMap.get('id')));
 		this.post$ = this.store.select(fromStore.getPostEntity);
 	}
 
@@ -36,7 +34,7 @@ export class DetailComponent {
 	}
 
 	editPost(id: number): void {
-		this.router.navigate([ '/posts', id ]);
+		this.router.navigate([ '/posts', id, 'edit' ]);
 	}
 
 	removePost(id: number): void {

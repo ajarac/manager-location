@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PostsComponent } from './posts.component';
 import * as pages from './pages';
+import * as guards from '@core/guards';
 
 const ROUTES: Routes = [
 	{
@@ -19,11 +20,13 @@ const ROUTES: Routes = [
 			},
 			{
 				path: ':id',
-				component: pages.DetailComponent
+				component: pages.DetailComponent,
+				canActivate: [ guards.PostGuard ]
 			},
 			{
 				path: ':id/edit',
-				component: pages.UpdateComponent
+				component: pages.UpdateComponent,
+				canActivate: [ guards.PostGuard ]
 			}
 		]
 	}

@@ -11,7 +11,7 @@ export interface BaseServiceImpl<T> {
 	remove(id: number): Observable<any>;
 }
 
-export class BaseService<T> implements BaseServiceImpl<T> {
+export abstract class BaseService<T> implements BaseServiceImpl<T> {
 	private _apiService: ApiService;
 
 	constructor(injector: Injector, private _resource: string) {
